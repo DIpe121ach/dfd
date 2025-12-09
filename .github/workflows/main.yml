@@ -1,0 +1,77 @@
+name: Split Files Win11 (Multi-Key)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deployment:
+    # يعمل على Windows 11
+    runs-on: windows-latest
+    timeout-minutes: 360
+
+    env:
+      # ====================================================
+      # قائمة مفاتيح Tailscale (المتعددة)
+      # ====================================================
+      aa1: |
+        tskey-auth-ktbK6VUjUm11CNTRL-Ke7DAS63CVEPVw1o5ADjVEjZxtxRmXp9i
+        tskey-auth-k4A62WSUu921CNTRL-jLRDj6rho48f7yjNqaKH48ff7hxCUSBaN
+        tskey-auth-k3UdCVfQPn11CNTRL-ZvtTTGhPebVdwAm54GbZbVW5aHuY32qK
+        tskey-auth-k4EYtQV5Jg11CNTRL-4re2pfqPvANgDcUSfAzHBNQTptoHu1fJ
+        tskey-auth-kPW9b32iKv11CNTRL-7ZYmXCQPpBGHdFYECBmaBGBAPMipm1Fo
+        tskey-auth-k9WXKubS4811CNTRL-Qx3R4NaPoSVxRHSAqavFSVSJPKeGcZc7S
+        tskey-auth-kbFTD9LhPV11CNTRL-GzpRdHqwerL4qWaGz9hjrLzd3y1Pyp9h
+        tskey-auth-koEk8uxBHB21CNTRL-tqHDdu6b48QC83Pitx8g7QPcVDJpw2eQ
+        tskey-auth-k3DSGaUY9221CNTRL-CwP6e1z9MuXAs7zGo4KtuXnPsQcC4rZCV
+        tskey-auth-kd1MkEccu621CNTRL-pMkYUn7m2HU2BgKqbKURHU4BpVDaiCGt
+        tskey-auth-kw3fc297LN11CNTRL-mxznjeQPqmGyoyFjjDgSmGfCgjtB8iuL
+
+      # بيانات المستخدم
+      aa2: "DDDDDDDAAAA"
+      aa3: "Zxxz4444"
+
+      # روابط البرامج
+      NST_URL: "https://tinyurl.com/nstkkdkac44"
+      RUST_URL: "https://tinyurl.com/ruskaaaaa11"
+      ZIP_URL: "https://tinyurl.com/filesdownlaodkkda45"
+      TAILSCALE_URL: "https://pkgs.tailscale.com/stable/tailscale-setup-latest-amd64.msi"
+
+      # ====================================================
+      # روابط السكربتات (يجب أن تحتوي الملفات في هذه الروابط على الأكواد الجديدة أعلاه)
+      # ====================================================
+      # رابط سكربت rdp-deploy.ps1
+      RDP_SCRIPT_URL: "https://tinyurl.com/2znxr8ve"
+      
+      # رابط سكربت additional-tasks.ps1
+      ADD_TASKS_URL: "https://tinyurl.com/additionaltasks251"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 1) تحميل وتشغيل سكربت RDP & Tailscale
+      - name: Run RDP & Tailscale Setup
+        shell: pwsh
+        run: |
+          Invoke-WebRequest "$env:RDP_SCRIPT_URL" -OutFile "rdp-deploy.ps1"
+          powershell -ExecutionPolicy Bypass ".\rdp-deploy.ps1"
+
+      # 2) تحميل وتشغيل سكربت البرامج
+      - name: Run Software Installation
+        shell: pwsh
+        run: |
+          Invoke-WebRequest "$env:ADD_TASKS_URL" -OutFile "additional-tasks.ps1"
+          powershell -ExecutionPolicy Bypass ".\additional-tasks.ps1"
+
+      # 3) إبقاء الجلسة تعمل
+      - name: Keep Session Alive
+        shell: pwsh
+        run: |
+          $KeepAliveMinutes = 350
+          Write-Host "==== SESSION STARTED: $KeepAliveMinutes Minutes ===="
+          $sw = [Diagnostics.Stopwatch]::StartNew()
+          while ($sw.Elapsed.TotalMinutes -lt $KeepAliveMinutes) {
+            $left = [math]::Round($KeepAliveMinutes - $sw.Elapsed.TotalMinutes)
+            Write-Host "Alive - $left minutes remaining..."
+            Start-Sleep -Seconds 60
+          }
