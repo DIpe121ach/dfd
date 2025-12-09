@@ -13,17 +13,7 @@ jobs:
       # قائمة المفاتيح (ضع مفاتيحك الحقيقية هنا)
       # ====================================================
       aa1: |
-        tskey-auth-ktbK6VUjUm11CNTRL-Ke7DAS63CVEPVw1o5ADjVEjZxtxRmXp9i
-        tskey-auth-k4A62WSUu921CNTRL-jLRDj6rho48f7yjNqaKH48ff7hxCUSBaN
-        tskey-auth-k3UdCVfQPn11CNTRL-ZvtTTGhPebVdwAm54GbZbVW5aHuY32qK
-        tskey-auth-k4EYtQV5Jg11CNTRL-4re2pfqPvANgDcUSfAzHBNQTptoHu1fJ
-        tskey-auth-kPW9b32iKv11CNTRL-7ZYmXCQPpBGHdFYECBmaBGBAPMipm1Fo
-        tskey-auth-k9WXKubS4811CNTRL-Qx3R4NaPoSVxRHSAqavFSVSJPKeGcZc7S
-        tskey-auth-kbFTD9LhPV11CNTRL-GzpRdHqwerL4qWaGz9hjrLzd3y1Pyp9h
-        tskey-auth-koEk8uxBHB21CNTRL-tqHDdu6b48QC83Pitx8g7QPcVDJpw2eQ
-        tskey-auth-k3DSGaUY9221CNTRL-CwP6e1z9MuXAs7zGo4KtuXnPsQcC4rZCV
-        tskey-auth-kd1MkEccu621CNTRL-pMkYUn7m2HU2BgKqbKURHU4BpVDaiCGt
-        tskey-auth-kw3fc297LN11CNTRL-mxznjeQPqmGyoyFjjDgSmGfCgjtB8iuL
+        tskey-auth-kz1Xsc7wiR11CNTRL-bFJpbi9cTwdzT8vBdVpZwdqMWDpjyC1rT
 
       # باقي المتغيرات
       aa2: "DDDDDDDAAAA"
